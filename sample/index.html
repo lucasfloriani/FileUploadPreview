@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="./../dist/upload.css">
   </head>
   <body>
-    <div class="image-container" id="file">
-      <li class="image-preview">
-        <label for="photo"></label>
-        <button type="button"></button>
-        <input type="file" name="photos" id="photo">
+    <div class="file-container" id="file">
+      <li class="file-preview-card">
+        <label for="photo" class="file-preview-button file-preview-add"></label>
+        <button type="button" class="file-preview-button file-preview-remove"></button>
+        <input type="file" name="photos" class="file-preview-hidden" id="photo">
       </li>
     </div>
     <script src="./../src/js/upload.js"></script>

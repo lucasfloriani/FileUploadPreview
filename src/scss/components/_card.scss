@@ -1,13 +1,14 @@
-.image-preview-card {
+.file-preview-card {
 	align-items: center;
 	background-color: #fff;
 	background-size: cover;
 	background-position: 50%;
+	border-radius: 2px;
+	box-shadow: 2px 2px 9px 0px #e0e0e0;
 	color: #ecf0f1;
 	display: flex;
-	flex-flow: column;
 	height: 300px;
-	justify-content: center;
+	justify-content: space-around;
 	overflow: hidden;
 	width: 300px;
 }
