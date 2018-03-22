@@ -1,0 +1,63 @@
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    upload: './src/js/upload.js'
+  },
+  output: {
+    filename: 'file-[name].js',
+    path: path.join(__dirname, 'dist')
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'file-[name].css'
+    })
+  ],
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: [['es2015']]
+        }
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: {
+                safe: true
+              }
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              autoprefixer: {
+                browsers: ['last 4 versions', '> 1%']
+              },
+              plugins: () => [
+                autoprefixer
+              ]
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
+  }
+};
