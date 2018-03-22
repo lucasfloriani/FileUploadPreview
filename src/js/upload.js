@@ -1,69 +1,63 @@
-class FileUpload { // eslint-disable-line
+import './../scss/main.scss';
+
+class FileUpload { /* eslint-disable-line */
   /**
-   *
+   * Constructor of object FileUpload
    */
-  constructor(container, name, identifier, callback = false, labelTextAdd = 'Choose File', labelTextChange = 'Change File', buttonTextRemove = 'Remove File') {
-    this.container = container;
+  constructor(container, name, identifier, callback = false) {
+    this.container = document.querySelector(container);
     this.name = name;
     this.identifier = identifier;
     this.callback = callback;
-    this.labelTextAdd = labelTextAdd;
-    this.labelTextChange = labelTextChange;
-    this.buttonTextRemove = buttonTextRemove;
-
-    this.create();
   }
 
   /**
-   *
+   * Function to create FileUpload container
    */
-  create() {
+  run() {
     this.setUploadEvents();
   }
 
   /**
-   *
+   * Return template of file upload field
    */
   getFileTemplate() {
     return `
-      <li>
-        <label for="${this.identifier}">${this.labelTextAdd}</label>
+      <li class="image-preview">
+        <label for="${this.identifier}"></label>
         <input type="file" name="${this.name}" id="${this.identifier}">
       </li>
     `;
   }
 
   /**
-   *
+   * Add events to input type file
    */
   setUploadEvents() {
-    this.container.forEach((li) => {
+    let childrens = Array.from(this.container.children);
+    childrens.forEach((li) => {
       let input = li.children[1];
-
-      input.addEventListener('change', this.changeFileEvent.bind(input, this.labelTextChange, this.callback));
+      input.addEventListener('change', this.changeFileEvent.bind(input, this.callback));
     });
   }
 
   /**
-   *
+   * Event added in function setUploadEvents
    */
-  changeFileEvent(labelTextChange, callback) {
+  changeFileEvent(callback) {
     const files = this.files;
 
     if (files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
 
-      reader.addEventListener((e) => {
+      reader.addEventListener('load', (e) => {
         const loadedFile = e.target;
 
         if (file.type.match('image')) {
-          this.style.backgroundImage = `url(${loadedFile.result}')`;
+          this.parentNode.style.backgroundImage = `url('${loadedFile.result}')`;
         }
       });
-
-      // Add text to change file
-      this.previousSibling.text = labelTextChange;
 
       // Read file
       reader.readAsDataURL(file);

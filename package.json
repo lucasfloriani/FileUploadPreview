@@ -1,7 +1,7 @@
 {
   "name": "fileuploadpreview",
   "version": "0.0.1",
-  "description": "File upload with\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DMulti\u001b[3~ File upload with preview",
+  "description": "File upload with multi file upload with preview",
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack",
