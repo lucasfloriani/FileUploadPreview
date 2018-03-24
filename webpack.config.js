@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    upload: './src/js/upload.js'
+    upload: ['babel-polyfill', './src/js/upload.js']
   },
   output: {
     filename: 'file-[name].js',
@@ -30,11 +30,13 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: [
-            ['env', {
-              targets: {
-                browsers: ['last 4 versions', 'safari >= 7', 'ie >= 11']
+            ['babel-preset-env',
+              {
+                targets: {
+                  browsers: ['last 4 versions', 'safari >= 7', 'ie >= 11']
+                },
+                debug: true
               }
-            }
             ]
           ]
         }
